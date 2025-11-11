@@ -20,12 +20,12 @@ const FeaturesSection = () => {
   ];
   return (
     <section>
-      <div className="grid grid-cols-3 bg-primary divide-x divide-gray-700 border border-gray-700 text-white px-10">
+      <div className="grid grid-cols-3 divide-x divide-neutral-700 px-10">
         {features.map(({ title, subtitle, description }) => (
           <div className="p-10">
-            <h4 className="text-lg font-bold">{title}</h4>
-            <h5 className="text-md mb-6">{subtitle}</h5>
-            <p className="text-sm text-gray-400">{description}</p>
+            <h4 className="mb-1 text-lg">{title}</h4>
+            <h5 className="mb-6 text-sm text-neutral-500">{subtitle}</h5>
+            <p className="text-neutral-400">{description}</p>
           </div>
         ))}
       </div>

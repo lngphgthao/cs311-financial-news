@@ -1,8 +1,9 @@
 import React from "react";
 
 const NavBar = () => {
+  const pages = ["Home", "News", "Podcasts", "Resources"];
   return (
-    <div className="flex justify-between items-center gap-8 h-16 px-20 py-10 border-y-1 border-y-gray-700 bg-primary text-white font-medium">
+    <div className="flex h-16 items-center justify-between gap-8 border-y border-y-neutral-700 bg-neutral-800 px-20 py-10 font-medium">
       <div className="flex items-center">
         <img
           className="h-10"
@@ -10,30 +11,19 @@ const NavBar = () => {
           alt="FNT Logo"
         />
       </div>
-      <ul className="flex gap-10 text-sm">
-        <li>
-          <a href="#" className="hover:text-yellow-500">
-            Home
-          </a>
-        </li>
-        <li>
-          <a href="#" className="hover:text-yellow-500">
-            News
-          </a>
-        </li>
-        <li>
-          <a href="#" className="hover:text-yellow-500">
-            Podcasts
-          </a>
-        </li>
-        <li>
-          <a href="#" className="hover:text-yellow-500">
-            Resources
-          </a>
-        </li>
+
+      <ul className="flex gap-5 text-sm">
+        {pages.map((page) => (
+          <li
+            key={page}
+            className="cursor-pointer rounded-lg border border-neutral-800 px-4 py-3 text-center text-sm text-neutral-400 transition-colors hover:border-neutral-700 hover:bg-neutral-900 hover:text-white"
+          >
+            <a href="#">{page}</a>
+          </li>
+        ))}
       </ul>
 
-      <button className="bg-yellow-500 text-black text-sm p-3 border-yellow-500 rounded-md">
+      <button className="rounded-md border-0 bg-yellow-500 p-3 text-sm text-black">
         Contact us
       </button>
     </div>

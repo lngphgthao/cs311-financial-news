@@ -4,12 +4,12 @@
 @theme {
   --font-sans: "Inter", "sans-serif";
   --grid-template-columns-70-30: 70% 30%;
-  --color-primary: #001f3f;
 }
 
 @layer base {
   body {
     font-family: var(--font-sans);
-    background: var(--color-primary);
+    background: var(--color-neutral-900);
+    color: var(--color-white);
   }
 }
