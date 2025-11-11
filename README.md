@@ -1,16 +1,21 @@
-# React + Vite
+<!-- Title -->
+<h1><b>CS311 - Financial News Website</b></h1>
+<!-- Main -->
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a part of the course **CS311 - Paradigms of Artificial Intelligence Programming** at the University of Information Technology
 
-Currently, two official plugins are available:
+## Members
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+| No  | Student ID | Full name               | Email                  |
+| --- | ---------- | ----------------------- | ---------------------- |
+| 1   | 2352xxxx   | Nguyễn Phú Thành        | 2352xxxx@gm.uit.edu.vn |
+| 2   | 2352xxxx   | Cù Nguyễn Huy Thái Tuấn | 2352xxxx@gm.uit.edu.vn |
+| 3   | 23521467   | Lê Ngọc Phương Thảo     | 23521467@gm.uit.edu.vn |
 
-## React Compiler
+## Course Information
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Course:** Paradigms of Artificial Intelligence Programming
+- **Course code:** CS311
+- **Class code:** CS311.Q11
+- **Semester:** Fall 2025
+- **Instructor**: Dr. Do Van Tien, Dr. Dang Van Thin
