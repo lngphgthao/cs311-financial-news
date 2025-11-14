@@ -2,6 +2,7 @@ import React from "react";
 
 const NavBar = () => {
   const pages = ["Home", "News", "Podcasts", "Resources"];
+
   return (
     <div className="flex h-16 items-center justify-between gap-8 border-y border-y-neutral-700 bg-neutral-800 px-20 py-10 font-medium">
       <div className="flex items-center">
@@ -18,7 +19,7 @@ const NavBar = () => {
             key={page}
             className="cursor-pointer rounded-lg border border-neutral-800 px-4 py-3 text-center text-sm text-neutral-400 transition-colors hover:border-neutral-700 hover:bg-neutral-900 hover:text-white"
           >
-            <a href="#">{page}</a>
+            <button href={`/${page.toLowerCase()}`}>{page}</button>
           </li>
         ))}
       </ul>

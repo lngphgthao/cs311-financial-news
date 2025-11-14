@@ -1,5 +1,5 @@
 import React from "react";
-
+import { BsArrowUpRight } from "react-icons/bs";
 const CTASection = () => {
   const cards = [
     {
@@ -45,9 +45,17 @@ const CTASection = () => {
 
       <div className="grid w-full grid-cols-3 gap-4 rounded-xl border border-neutral-800 bg-black p-4">
         {cards.map((card) => (
-          <div className="flex flex-col justify-between rounded-md border border-neutral-800 bg-neutral-900 p-8">
-            <h4 className="py-2 text-lg font-medium">{card.title}</h4>
-            <p className="text-sm text-neutral-400">{card.subtitle}</p>
+          <div className="flex flex-col justify-between gap-1 rounded-md border border-neutral-800 bg-neutral-900 p-8">
+            <div className="flex flex-row items-center justify-between pb-4">
+              <h4 className="text-lg font-medium">{card.title}</h4>
+
+              <div className="items-center rounded-full bg-amber-300 p-3">
+                <BsArrowUpRight className="text-xl text-black" />
+              </div>
+            </div>
+            <div className="flex flex-auto items-center">
+              <p className="text-sm text-neutral-400">{card.subtitle}</p>
+            </div>
           </div>
         ))}
       </div>

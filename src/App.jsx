@@ -1,26 +1,17 @@
-import React from "react";
-import SubcribeBar from "./components/SubcribeBar";
-import NavBar from "./components/NavBar";
-import HeroSection from "./components/HeroSection";
-import FeaturesSection from "./components/HomePage/FeaturesSection";
-import BlogSection from "./components/HomePage/BlogSection";
-import RatingSection from "./components/HomePage/RatingSection";
-import CTASection from "./components/CTASection";
-import Footer from "./components/Footer.jsx";
+import {
+  Route,
+  createBrowserRouter,
+  createRoutesFromElements,
+  RouterProvider,
+} from "react-router-dom";
+import HomePage from "./pages/HomePage.jsx";
+
+const router = createBrowserRouter(
+  createRoutesFromElements(<Route index element={<HomePage />} />),
+);
 
 const App = () => {
-  return (
-    <>
-      <SubcribeBar />
-      <NavBar />
-      <HeroSection />
-      <FeaturesSection />
-      <BlogSection />
-      <RatingSection />
-      <CTASection />
-      <Footer />
-    </>
-  );
+  return <RouterProvider router={router} />;
 };
 
 export default App;

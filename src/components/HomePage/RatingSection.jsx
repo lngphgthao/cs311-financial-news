@@ -80,7 +80,7 @@ const RatingSection = () => {
         buttonText="View All Ratings"
         buttonLink="/ratings"
       />
-      <div className="grid grid-cols-3 grid-rows-2 divide-x divide-y divide-neutral-700 border-b border-neutral-700">
+      <div className="grid grid-cols-3 grid-rows-2 divide-x divide-neutral-700">
         {ratings.map((rating) => (
           <RatingCard key={rating.id} rating={rating} />
         ))}

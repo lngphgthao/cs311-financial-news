@@ -1,8 +1,11 @@
 import React from "react";
+import { FaStar } from "react-icons/fa";
 
 const RatingCard = ({ rating }) => {
+  const numberOfStars = Array.from({ length: rating.rating });
+
   return (
-    <div className="flex flex-col items-center p-10">
+    <div className="flex flex-col items-center border-b border-neutral-600 p-10">
       {/* User Info */}
       <div className="flex gap-3 p-8 pb-12">
         <img className="size-12 rounded-full" src={rating.user.image} alt="" />
@@ -18,8 +21,12 @@ const RatingCard = ({ rating }) => {
         </div>
 
         {/* User Rating */}
-        <div className="absolute inset-x-32 -top-4 flex items-center justify-center rounded-3xl border border-neutral-700 bg-neutral-950 p-1">
-          <p className="text-lg">Stars</p>
+        <div className="absolute inset-x-32 -top-4 flex items-center justify-center rounded-3xl border border-neutral-700 bg-neutral-950 p-2">
+          <p className="flex gap-2 text-lg">
+            {numberOfStars.map(() => (
+              <FaStar className="inline text-yellow-400" />
+            ))}
+          </p>
         </div>
       </div>
     </div>
