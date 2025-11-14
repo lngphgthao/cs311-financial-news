@@ -1,5 +1,5 @@
 import React from "react";
-import SectionHeader from "./SectionHeader";
+import SectionHeader from "../common/SectionHeader";
 import BlogCard from "./BlogCard";
 
 const BlogSection = () => {
@@ -72,7 +72,7 @@ const BlogSection = () => {
         {categories.map((category) => (
           <div
             key={category}
-            className="h-f w-55 cursor-pointer rounded border border-neutral-700 p-5 text-center text-sm text-neutral-400 transition-colors hover:bg-neutral-700 hover:text-white"
+            className="w-55 cursor-pointer rounded border border-neutral-700 p-5 text-center text-sm text-neutral-400 transition-colors hover:bg-neutral-700 hover:text-white"
           >
             {category}
           </div>

@@ -56,7 +56,7 @@ const BlogCard = ({ post }) => {
         </div>
 
         {/* View Blog Button */}
-        <button className="rounded-lg border border-neutral-600/60 px-4 py-3 text-neutral-400">
+        <button className="rounded-lg border border-neutral-600/60 px-4 py-3 text-neutral-400 hover:bg-neutral-700 hover:text-white">
           View Blog
           <BsArrowUpRight className="ml-2 inline text-lg text-amber-300" />
         </button>

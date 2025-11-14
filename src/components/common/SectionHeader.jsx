@@ -17,7 +17,7 @@ const SectionHeader = ({ subtitle, title, buttonText, buttonLink = "#" }) => {
       {buttonText && (
         <button
           onClick={() => (window.location.href = buttonLink)}
-          className="rounded-lg border border-neutral-700/50 bg-neutral-900/80 px-4 py-3 text-neutral-400"
+          className="rounded-lg border border-neutral-700/50 bg-neutral-900/80 px-4 py-3 text-neutral-400 hover:bg-neutral-700 hover:text-white"
         >
           {buttonText}
           <BsArrowUpRight className="ml-2 inline text-lg text-amber-300" />

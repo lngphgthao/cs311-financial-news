@@ -76,7 +76,7 @@ const Footer = () => {
           <div className="flex flex-col gap-3">
             {last_column.categories.map((category) => (
               <a
-                className="w-fit rounded-lg border border-neutral-600 px-3 py-2.5 text-sm text-neutral-400"
+                className="w-fit rounded-lg border border-neutral-600 px-3 py-2.5 text-sm text-neutral-400 hover:bg-neutral-700 hover:text-white"
                 href="#"
               >
                 {category}
