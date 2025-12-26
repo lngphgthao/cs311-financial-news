@@ -9,6 +9,7 @@ const HeroSection = () => {
     { value: "12k+", label: "Total Downloads" },
     { value: "10k+", label: "Active Users" },
   ];
+
   return (
     <section className="grid grid-cols-[4fr_3fr] items-center justify-between border-b border-b-neutral-700">
       <div className="flex h-full flex-col justify-center">
@@ -34,7 +35,7 @@ const HeroSection = () => {
               <p className="mb-2 text-3xl font-bold text-yellow-400">
                 {item.value}
               </p>
-              <p className="text-sm text-gray-400">{item.label}</p>
+              <p className="text-sm text-neutral-400">{item.label}</p>
             </div>
           ))}
         </div>

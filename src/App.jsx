@@ -9,6 +9,7 @@ import HomePage from "./pages/HomePage.jsx";
 import BrowseNewsPage from "./pages/BrowseNewsPage.jsx";
 import NewsPage from "./pages/NewsPage.jsx";
 import ContactPage from "./pages/ContactPage.jsx";
+import ChatbotPage from "./pages/ChatbotPage.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -16,6 +17,7 @@ const router = createBrowserRouter(
       <Route index element={<HomePage />} />
       <Route path="/news" element={<BrowseNewsPage />} />
       <Route path="/news/:id" element={<NewsPage />} />
+      <Route path="/chatbot" element={<ChatbotPage />} />
       <Route path="/contact" element={<ContactPage />} />
     </Route>,
   ),

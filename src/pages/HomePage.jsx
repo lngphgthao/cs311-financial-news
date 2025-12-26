@@ -12,7 +12,6 @@ const HomePage = () => {
       <FeaturesSection />
       <BlogSection />
       <RatingSection />
-      <CTASection />
     </>
   );
 };
