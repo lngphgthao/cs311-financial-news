@@ -13,18 +13,35 @@ const ChatbotSection = () => {
 
   const [input, setInput] = useState("");
 
-  const sendMessage = () => {
+  const sendMessage = async () => {
     if (!input.trim()) return;
 
     const userMsg = { role: "user", content: input };
-    const botMsg = {
-      role: "assistant",
-      content:
-        "This is a demo response. Connect me to your AI backend to get real answers.",
-    };
-
-    setMessages((prev) => [...prev, userMsg, botMsg]);
+    setMessages((prev) => [...prev, userMsg]);
     setInput("");
+
+    try {
+      const res = await fetch("http://localhost:5000/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: input }),
+      });
+
+      const data = await res.json();
+      const botMsg = {
+        role: "assistant",
+        content: data.response,
+      };
+
+      setMessages((prev) => [...prev, botMsg]);
+    } catch (error) {
+      console.error("Error:", error);
+      const errorMsg = {
+        role: "assistant",
+        content: "Error connecting to backend. Make sure the server is running.",
+      };
+      setMessages((prev) => [...prev, errorMsg]);
+    }
   };
 
   return (
