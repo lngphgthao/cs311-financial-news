@@ -39,6 +39,21 @@ def get_article_links():
     
     return list(set(links))  
 
+def preprocess_date(date_str: str):
+    """Extract and clean date, removing timezone info like (GMT+7)"""
+    if not date_str:
+        return None
+    
+    # Remove timezone info like (GMT+7)
+    cleaned = re.sub(r'\s*\([^)]*GMT[^)]*\)\s*', '', date_str).strip()
+    
+    # Extract date and time pattern (dd/mm/yyyy, hh:mm)
+    match = re.search(r'(\d{1,2}/\d{1,2}/\d{4}),?\s+(\d{1,2}:\d{2})', cleaned)
+    if match:
+        return f"{match.group(1)}, {match.group(2)}"
+    
+    return cleaned
+
 def crawl_article(url):
     headers = {
         "User-Agent": "Mozilla/5.0 (compatible; MyCrawler/1.0)"
@@ -104,7 +119,7 @@ def crawl_article(url):
 
         return {
             "title": title.get_text(strip=True) if title else None,
-            "date": date.get_text(strip=True) if date else None,
+            "date": preprocess_date(date.get_text(strip=True)) if date else None,
             "content": content_text if raw_content is not None else None,
             "author": author,
             "url": url
@@ -123,16 +138,17 @@ def main():
     for i, link in enumerate(links, 1):
         print(f"[{i}/{len(links)}] Crawling: {link}")
         data = crawl_article(link)
-        if data:
+        if data and data.get("title") and data.get("content"):
+            if not data.get("author"):
+                data["author"] = "Anonymous"
+                print(f"No author extracted, set to Anonymous")
             articles.append(data)
-            if data.get("author"):
+            if data.get("author") != "Anonymous":
                 author_count += 1
-                print(f"Author found: {data['author']}")
-            else:
-                print(f"No author extracted")
+                print(f"Author found: {data['author']}")                
         time.sleep(1)
 
-    with open("vnexpress_kinhdoanh.json", "w", encoding="utf-8") as f:
+    with open("C:\\Users\\USER\\Documents\\Chatbot\\cs311-financial-news\\solutions\\vnnewscrawler\\news\\vnexpress_kinhdoanh.json", "w", encoding="utf-8") as f:
         json.dump(articles, f, ensure_ascii=False, indent=2)
 
     print(f"\nSaved {len(articles)} articles in vnexpress_kinhdoanh.json")
