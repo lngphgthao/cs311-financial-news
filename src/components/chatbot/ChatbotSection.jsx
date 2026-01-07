@@ -31,6 +31,7 @@ const ChatbotSection = () => {
       const botMsg = {
         role: "assistant",
         content: data.response,
+        references: data.references || [],
       };
 
       setMessages((prev) => [...prev, botMsg]);
@@ -57,7 +58,12 @@ const ChatbotSection = () => {
           {/* Messages */}
           <div className="flex-1 space-y-4 overflow-y-auto p-6">
             {messages.map((msg, idx) => (
-              <ChatMessage key={idx} role={msg.role} content={msg.content} />
+              <ChatMessage 
+                key={idx} 
+                role={msg.role} 
+                content={msg.content}
+                references={msg.references}
+              />
             ))}
           </div>
 
