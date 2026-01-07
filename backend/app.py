@@ -59,14 +59,14 @@ chat_prompt = """
 You are a Vietnamese language expert. 
 
 ### Guidelines:
-1. Response with Vietnamese
+1. Response with Vietnamese.
 2. Only based on information about course information do not care about files information. 
 3. Use natural and conversational Vietnamese suitable for the intended audience.
 4. Avoid repetition and ensure each question addresses a distinct aspect of the context.
-5. remove all special token
-6. Short answer
+5. remove all special token.
+6. Short answer.
 7. Do not Hallucinate if you don't know the answer.
-8. Do not repeat the question
+8. Do not repeat the question.
 
 let's think step by step
 
@@ -82,7 +82,7 @@ Your goals:
 4. If the question asks for forecasts, respond cautiously, using data-driven reasoning.
 5. If no relevant information is found in the provided context, respond exactly with:"Xin lỗi, tôi không tìm thấy thông tin phù hợp trong dữ liệu hiện có."
 6. Always respond in **natural, fluent Vietnamese**, using a **professional, objective, and concise** tone.
-7. The answer must be **short, clear, and information-rich** — concise but still complete.
+7. The answer must be **short, clear, and information-rich**, concise but still complete.
 
 let's think step by step.
 
@@ -119,8 +119,8 @@ index = load_index_from_storage(storage_context)
 
 retriever = QueryFusionRetriever(
     [
-        index.as_retriever(similarity_top_k=10),
-        BM25Retriever.from_defaults(docstore=index.docstore, similarity_top_k=10)
+        index.as_retriever(similarity_top_k=3),
+        BM25Retriever.from_defaults(docstore=index.docstore, similarity_top_k=3)
     ],
     num_queries=1,
     use_async=True
@@ -138,22 +138,22 @@ chat_engine = index.as_chat_engine(
     query_engine=query_engine,
     verbose=True,
     llm=llm,
-    max_tokens=1000, 
+    max_tokens=512, 
 )
 
 def result_content(results):
     matches = results['matches']
     response_texts = []
-    response_url = []
+    url = set()
     for match in matches:
         node_content = json.loads(match['metadata']['_node_content'])
         match_text = node_content['text']
-        url_text = node_content['url']
+        match_url = node_content['metadata'].get('url', '')
+        if match_url not in url:
+            url.add(match_url)
         response_texts.append(match_text)
-        response_url.append(url_text)
     response = "\n".join(response_texts)
-    print(response_url)
-    return response, response_url
+    return response, url
         
 def get_embed(text):
     return embedding_model._embed(text)
@@ -163,25 +163,25 @@ def chat():
     data = request.json
     query = data.get("message", "")
     
-    pc_index = pc.Index(host="https://tuankodepzai-ap6o33y.svc.aped-4627-b74a.pinecone.io")
+    pc_index = pc.Index(host="https://brilliant-peach-ap6o33y.svc.aped-4627-b74a.pinecone.io")
     emb_query = get_embed(query)
     small_talk = classify_message(query)
     
     if not small_talk:
         try:
-            results = pc_index.query(vector=emb_query, top_k=10, include_metadata=True, namespace='__default__')
-            res, urls = result_content(results)
+            results = pc_index.query(vector=emb_query, top_k=3, include_metadata=True, namespace='__default__')
+            res, url = result_content(results)
             react_response = chat_engine.chat(res + "\nQuestion: " + query)
             chat_engine.reset()
             
-            print("References URLs:", urls)
             return jsonify({
                 "query": query,
                 "response": react_response.response.split("user:")[0].strip(),
-                "references": urls,
+                "references": list(url),
                 "status": "success"
             })
         except Exception as e:
+            print("Error at", str(e))
             return jsonify({
                 "query": query,
                 "response": "Xin lỗi, hiện tại tôi không thể trả lời câu hỏi này.",
