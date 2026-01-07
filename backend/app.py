@@ -9,8 +9,6 @@ from dotenv import load_dotenv
 load_dotenv()
 nest_asyncio.apply()
 
-from solutions.tinyguardrails import classify_message
-
 from llama_index.retrievers.bm25 import BM25Retriever
 from llama_index.core.retrievers import QueryFusionRetriever
 from llama_index.core.query_engine import RetrieverQueryEngine
@@ -25,6 +23,37 @@ from llama_index.vector_stores.pinecone import PineconeVectorStore
 from llama_index.llms.groq import Groq
 from pinecone import Pinecone
 import cohere
+
+import unicodedata
+from rapidfuzz import fuzz
+
+threshold = 80
+
+def to_lower_case(text):
+    text = text.lower()
+    text = ''.join(c for c in unicodedata.normalize('NFD', text) if unicodedata.category(c) != 'Mn')
+    return text
+
+def classify_message(message):
+    clean_text = to_lower_case(message)
+
+    small_talk_keywords = [
+        "xin chao", "hom nay", "khoe khong", "the nao", "cam thay", "noi chuyen", "vui ve", "tro chuyen",
+        "toi ten la", "ten toi la", "toi o dau", "ban o dau", "co met khong", "ban nghi sao", "anh nghi sao",
+        "cam on", "xin loi", "toi buon", "toi vui", "troi dep", "troi mua", "co bi khong", "co that khong",
+        "co dung khong", "chao buoi sang", "chao buoi toi", "chao buoi trua",
+    ]
+    
+    financial_keywords = [ 
+        "gia vang", "ty gia", "chung khoan", "co phieu", "forex", "ngoai hoi",
+        "tai chinh", "dau tu", "thi truong", "bat dong san", "quy dau tu",
+        "tin tuc tai chinh", "tin tuc chung khoan", "thi truong chung khoan",
+    ]
+    
+    small_talk_match = any(fuzz.partial_ratio(clean_text, kw) >= threshold for kw in small_talk_keywords)
+    financial_match = any(fuzz.partial_ratio(clean_text, kw) >= threshold for kw in financial_keywords)
+    
+    return 1 if small_talk_match and not financial_match else 0
 
 chat_prompt = """
 You are a Vietnamese language expert. 
@@ -82,6 +111,8 @@ pc = Pinecone(api_key=os.environ["PINECONE_API_KEY"])
 embedding_model = HuggingFaceEmbedding(model_name="BAAI/bge-m3")
 llm = Groq(model="groq/compound", api_key=os.environ.get("GROQ_API_KEY"))
 co = cohere.Client(os.environ.get("COHERE_API_KEY"))
+Settings.embed_model = embedding_model
+Settings.llm = llm
 
 storage_context = StorageContext.from_defaults(persist_dir=r"C:\Users\USER\Documents\Chatbot\cs311-financial-news\solutions\database")
 index = load_index_from_storage(storage_context)
@@ -102,7 +133,7 @@ query_engine.update_prompts({"response_synthesizer:text_qa_template": example_qu
 
 
 chat_engine = index.as_chat_engine(
-    chat_mode="condensed_plus_context",
+    chat_mode="condense_plus_context",
     system_prompt=(chat_prompt),
     query_engine=query_engine,
     verbose=True,
@@ -121,6 +152,7 @@ def result_content(results):
         response_texts.append(match_text)
         response_url.append(url_text)
     response = "\n".join(response_texts)
+    print(response_url)
     return response, response_url
         
 def get_embed(text):
@@ -131,17 +163,18 @@ def chat():
     data = request.json
     query = data.get("message", "")
     
-    pc_index = pc.Index(name="fin", host="https://tuankodepzai-ap6o33y.svc.aped-4627-b74a.pinecone.io")
+    pc_index = pc.Index(host="https://tuankodepzai-ap6o33y.svc.aped-4627-b74a.pinecone.io")
     emb_query = get_embed(query)
     small_talk = classify_message(query)
     
     if not small_talk:
         try:
-            results = pc_index.query(vector=emb_query, top_k=5, include_metadata=True, namespace="financial-news")
+            results = pc_index.query(vector=emb_query, top_k=10, include_metadata=True, namespace='__default__')
             res, urls = result_content(results)
             react_response = chat_engine.chat(res + "\nQuestion: " + query)
             chat_engine.reset()
             
+            print("References URLs:", urls)
             return jsonify({
                 "query": query,
                 "response": react_response.response.split("user:")[0].strip(),
@@ -172,7 +205,7 @@ def chat():
         except Exception as e:
             response = {
                 "query": query,
-                "response": "Xin lỗi, hiện tại tôi không thể trả lời câu hỏi này.",
+                "response": "Xin lỗi, câu hỏi này tôi không thể trả lời.",
                 "references": [],
                 "status": "error",
                 "error": str(e)
