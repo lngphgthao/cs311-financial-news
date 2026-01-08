@@ -92,11 +92,11 @@ index = VectorStoreIndex(splitted_docs, storage_context=storage_context)
 
 index.storage_context.persist("database/")
 
-pinecone_index = pc.Index(name="fin", host="https://tuankodepzai-ap6o33y.svc.aped-4627-b74a.pinecone.io")
+pinecone_index = pc.Index(host="https://brilliant-peach-ap6o33y.svc.aped-4627-b74a.pinecone.io")
 storage_context_pinecone = StorageContext.from_defaults(
     vector_store=PineconeVectorStore(pinecone_index)
 )
-index = VectorStoreIndex.from_documents(splitted_docs, show_progress=True, storage_context=storage_context_pinecone, embed_model= embedding_model)
+index = VectorStoreIndex.from_documents(splitted_docs, show_progress=True, storage_context=storage_context_pinecone, embed_model=embedding_model)
 
 print("Indexing completed and stored in Pinecone.")
 print("\n")
