@@ -7,7 +7,7 @@ const ChatbotSection = () => {
     {
       role: "assistant",
       content:
-        "Hello! I am the FutureTech AI Assistant. How can I help you today?",
+        "Xin chào! Tôi là trợ lý AI về tài chính. Tôi có thể giúp gì cho bạn hôm nay?",
     },
   ]);
 
@@ -39,7 +39,8 @@ const ChatbotSection = () => {
       console.error("Error:", error);
       const errorMsg = {
         role: "assistant",
-        content: "Error connecting to backend. Make sure the server is running.",
+        content:
+          "Đã có lỗi xảy ra khi kết nối với máy chủ. Vui lòng thử lại sau.",
       };
       setMessages((prev) => [...prev, errorMsg]);
     }
@@ -47,20 +48,20 @@ const ChatbotSection = () => {
 
   return (
     <section className="bg-[#0d0d0d] py-12">
-      <div className="mx-auto max-w-5xl px-4">
+      <div className="mx-auto max-w-6xl px-4">
         <div className="flex h-[70vh] flex-col rounded-2xl bg-[#141414]">
           {/* Chat header */}
           <div className="border-b border-gray-800 px-6 py-4">
             <h2 className="font-semibold text-white">AI Chatbot</h2>
-            <p className="text-xs text-gray-400">Powered by FutureTech</p>
+            <p className="text-xs text-gray-400">Được phát triển bởi FNT</p>
           </div>
 
           {/* Messages */}
           <div className="flex-1 space-y-4 overflow-y-auto p-6">
             {messages.map((msg, idx) => (
-              <ChatMessage 
-                key={idx} 
-                role={msg.role} 
+              <ChatMessage
+                key={idx}
+                role={msg.role}
                 content={msg.content}
                 references={msg.references}
               />
@@ -73,14 +74,14 @@ const ChatbotSection = () => {
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Type your message..."
+              placeholder="Nhập tin nhắn của bạn..."
               className="flex-1 rounded-lg border border-gray-700 bg-black px-4 py-2 text-sm text-white focus:border-yellow-400 focus:outline-none"
             />
             <button
               onClick={sendMessage}
               className="rounded-lg bg-yellow-400 px-5 py-2 text-sm font-semibold text-black hover:bg-yellow-300"
             >
-              Send
+              Gửi tin nhắn
             </button>
           </div>
         </div>

@@ -5,7 +5,7 @@ const ChatMessage = ({ role, content, references = [] }) => {
     <div
       className={`flex ${role === "user" ? "justify-end" : "justify-start"}`}
     >
-      <div className="w-full">
+      <div className="w-full max-w-2xl px-4">
         <div
           className={`max-w-[75%] rounded-xl px-4 py-3 text-sm leading-relaxed ${
             role === "user"
@@ -23,10 +23,12 @@ const ChatMessage = ({ role, content, references = [] }) => {
                 href={ref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block max-w-[75%] rounded-lg border border-gray-700 bg-[#1a1a1a] p-3 text-xs text-gray-300 hover:border-yellow-400 hover:bg-[#252525] transition"
+                className="block max-w-[75%] rounded-lg border border-gray-700 bg-[#1a1a1a] p-3 text-xs text-gray-300 transition hover:border-yellow-400 hover:bg-[#252525]"
               >
-                <p className="truncate font-semibold text-gray-200">📄 Reference {idx + 1}</p>
-                <p className="mt-1 break-words text-gray-400">{ref}</p>
+                <p className="truncate font-semibold text-gray-200">
+                  📄 Reference {idx + 1}
+                </p>
+                <p className="mt-1 wrap-break-word text-gray-400">{ref}</p>
               </a>
             ))}
           </div>

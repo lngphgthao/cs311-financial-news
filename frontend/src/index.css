@@ -12,4 +12,7 @@
     background: var(--color-neutral-900);
     color: var(--color-white);
   }
+  /* section {
+    @apply px-8 md:px-8;
+  } */
 }

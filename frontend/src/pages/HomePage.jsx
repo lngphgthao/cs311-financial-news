@@ -7,12 +7,12 @@ import CTASection from "../components/common/CTASection";
 
 const HomePage = () => {
   return (
-    <>
+    <div className="flex min-h-screen w-full flex-col bg-neutral-900">
       <HeroSection />
       <FeaturesSection />
       <BlogSection />
       <RatingSection />
-    </>
+    </div>
   );
 };
 

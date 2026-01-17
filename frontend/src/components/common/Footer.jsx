@@ -5,58 +5,58 @@ import { FaFacebookF, FaTwitter, FaLinkedinIn } from "react-icons/fa";
 const Footer = () => {
   const left_columns = [
     {
-      title: "Home",
+      title: "Trang chủ",
       categories: [
-        { label: "Features", href: "#" },
-        { label: "Blogs", href: "#" },
-        { label: "Resources", href: "#" },
-        { label: "Testimonials", href: "#" },
-        { label: "Contact Us", href: "#" },
-        { label: "Newsletter", href: "#" },
+        { label: "Tính năng", href: "#" },
+        { label: "Blog", href: "#" },
+        { label: "Tài nguyên", href: "#" },
+        { label: "Cảm nhận", href: "#" },
+        { label: "Liên hệ", href: "#" },
+        { label: "Bản tin", href: "#" },
       ],
     },
     {
-      title: "News",
+      title: "Tin tức",
       categories: [
-        { label: "Trending Stories", href: "#" },
-        { label: "Featured Videos", href: "#" },
-        { label: "Technology", href: "#" },
-        { label: "Health", href: "#" },
-        { label: "Politics", href: "#" },
-        { label: "Environment", href: "#" },
+        { label: "Tin nổi bật", href: "#" },
+        { label: "Video nổi bật", href: "#" },
+        { label: "Công nghệ", href: "#" },
+        { label: "Sức khỏe", href: "#" },
+        { label: "Chính trị", href: "#" },
+        { label: "Môi trường", href: "#" },
       ],
     },
     {
-      title: "Blogs",
+      title: "Blog",
       categories: [
-        { label: "Quantum Computing", href: "#" },
-        { label: "AI Ethics", href: "#" },
-        { label: "Space Exploration", href: "#" },
-        { label: "Biotechnology", href: "#" },
-        { label: "Renewable Energy", href: "#" },
+        { label: "Máy tính lượng tử", href: "#" },
+        { label: "Đạo đức AI", href: "#" },
+        { label: "Khám phá vũ trụ", href: "#" },
+        { label: "Công nghệ sinh học", href: "#" },
+        { label: "Năng lượng tái tạo", href: "#" },
         { label: "Biohacking", href: "#" },
       ],
     },
     {
-      title: "Podcasts",
+      title: "Podcast",
       categories: [
-        { label: "AI Revolution", href: "#" },
-        { label: "AI models", href: "#" },
+        { label: "Cách mạng AI", href: "#" },
+        { label: "Mô hình AI", href: "#" },
         { label: "TechTalk AI", href: "#" },
-        { label: "AI Conversations", href: "#" },
+        { label: "Trò chuyện AI", href: "#" },
       ],
     },
   ];
 
   const last_column = {
-    title: "Resources",
-    categories: ["Whitepapers", "Ebooks", "Reports", "Research Papers"],
+    title: "Tài nguyên",
+    categories: ["Whitepapers", "Ebooks", "Báo cáo", "Nghiên cứu"],
   };
 
   return (
-    <div className="divide-y divide-neutral-600 px-18">
+    <div className="divide-y divide-neutral-600 px-4 sm:px-8 md:px-18">
       {/* First 4 columns */}
-      <div className="grid grid-cols-5 justify-between py-18">
+      {/* <div className="grid grid-cols-2 justify-between gap-6 py-10 sm:grid-cols-3 md:grid-cols-5 md:py-18">
         {left_columns.map((col) => (
           <div className="flex flex-col" key={col.title}>
             <h5 className="mb-5 text-lg">{col.title}</h5>
@@ -70,7 +70,6 @@ const Footer = () => {
           </div>
         ))}
 
-        {/* Last columns */}
         <div className="flex flex-col">
           <h5 className="mb-3 text-lg">{last_column.title}</h5>
           <div className="flex flex-col gap-3">
@@ -85,16 +84,16 @@ const Footer = () => {
             ))}
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Social Media */}
-      <div className="flex flex-row justify-between py-8">
+      <div className="flex flex-col justify-between gap-4 py-8 md:flex-row md:gap-0">
         <div className="flex flex-row divide-x divide-neutral-600 text-sm text-neutral-400">
           <div className="pr-3">
-            <a href="">Terms & Conditions</a>
+            <a href="">Điều khoản & Điều kiện</a>
           </div>
           <div className="pl-3">
-            <a href="">Privacy Policy</a>
+            <a href="">Chính sách bảo mật</a>
           </div>
         </div>
         <div>
@@ -104,7 +103,7 @@ const Footer = () => {
         </div>
         <div className="div">
           <p className="text-sm text-neutral-400">
-            © 2024 FutureTech. All rights reserved.
+            © 2026 FNT. Đã đăng ký bản quyền.
           </p>
         </div>
       </div>

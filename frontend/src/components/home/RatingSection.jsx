@@ -7,80 +7,80 @@ const RatingSection = () => {
     {
       id: 1,
       user: {
-        name: "Sarah Thompson",
-        location: "San Francisco, USA",
-        image: "src/assets/images/dog.jpg",
+        name: "Nguyễn Văn An",
+        location: "Hà Nội",
+        image: "src/assets/images/user1.jpg",
       },
       comment:
-        "The ebooks on AI in education have been a game-changer for my research. They provide in-depth insights and case studies that are invaluable for staying updated.",
+        "Các ebook về đầu tư tài chính đã giúp tôi hiểu rõ hơn về cách quản lý tài sản và tối ưu hóa lợi nhuận. Đây là nguồn tài liệu không thể thiếu.",
       rating: 5,
     },
     {
       id: 2,
       user: {
-        name: "Raj Patel",
-        location: "Mumbai, India",
-        image: "src/assets/images/dog.jpg",
+        name: "Trần Thị Hoa",
+        location: "TP. Hồ Chí Minh",
+        image: "src/assets/images/user2.jpg",
       },
       comment:
-        "The whitepapers on renewable energy strategies have greatly influenced my work. They offer detailed data and analysis, helping me make informed decisions.",
+        "Các báo cáo về thị trường chứng khoán đã cung cấp cho tôi những phân tích sâu sắc và dự báo chính xác, giúp tôi đưa ra quyết định đầu tư hiệu quả.",
       rating: 5,
     },
     {
       id: 3,
       user: {
-        name: "Emily Adams",
-        location: "London, UK",
-        image: "src/assets/images/dog.jpg",
+        name: "Lê Minh Tuấn",
+        location: "Đà Nẵng",
+        image: "src/assets/images/user3.jpg",
       },
       comment:
-        "The AI in healthcare reports have been an essential resource for our hospital. They highlight the latest innovations and best practices, improving patient care.",
+        "Các tài liệu về quản lý rủi ro tài chính đã giúp công ty tôi tránh được những sai lầm lớn và cải thiện hiệu quả hoạt động.",
       rating: 5,
     },
     {
       id: 4,
       user: {
-        name: "Alan Jackson",
-        location: "Houston, USA",
-        image: "src/assets/images/dog.jpg",
+        name: "Phạm Quốc Huy",
+        location: "Cần Thơ",
+        image: "src/assets/images/user4.jpg",
       },
       comment:
-        "The reports on space mining prospects have fueled my passion for space exploration. They provide a comprehensive view of what lies beyond Earth.",
+        "Những bài viết về chiến lược đầu tư dài hạn đã thay đổi cách tôi tiếp cận thị trường. Chúng thực sự hữu ích và dễ hiểu.",
       rating: 5,
     },
     {
       id: 5,
       user: {
-        name: "Jessica Miller",
-        location: "Boston, USA",
-        image: "src/assets/images/dog.jpg",
+        name: "Vũ Thị Lan",
+        location: "Hải Phòng",
+        image: "src/assets/images/user5.jpg",
       },
       comment:
-        "The research papers on genomic breakthroughs have been a goldmine of information. They've shaped the direction of my research in genomics.",
-      rating: 5,
+        "Các nghiên cứu về tài chính cá nhân đã giúp tôi lập kế hoạch tiết kiệm và đầu tư hiệu quả hơn. Tôi rất biết ơn vì điều đó.",
+      rating: 4,
     },
     {
       id: 6,
       user: {
-        name: "Dieogo Lopez",
-        location: "Barcelona, Spain",
-        image: "src/assets/images/dog.jpg",
+        name: "Đặng Hoàng Nam",
+        location: "Huế",
+        image: "src/assets/images/user6.jpg",
       },
       comment:
-        "The ebooks on renewable energy strategies have given me the insights I needed to pivot our startup toward sustainability.",
-      rating: 5,
+        "Các ebook về quản lý tài chính doanh nghiệp đã cung cấp cho tôi những kiến thức cần thiết để phát triển startup của mình.",
+      rating: 4,
     },
   ];
 
   return (
     <section>
       <SectionHeader
-        subtitle="What Our Readers Say"
-        title="Real Words from Real Readers"
-        buttonText="View All Ratings"
+        subtitle="Độc giả nói gì?"
+        title="Cảm nhận thực tế từ độc giả"
+        buttonText="Xem tất cả đánh giá"
         buttonLink="/ratings"
       />
-      <div className="grid grid-cols-3 grid-rows-2 divide-x divide-neutral-700">
+      <div className="grid grid-cols-1 grid-rows-2 divide-y divide-neutral-700 sm:grid-cols-2 md:grid-cols-3 md:divide-x md:divide-y-0">
         {ratings.map((rating) => (
           <RatingCard key={rating.id} rating={rating} />
         ))}

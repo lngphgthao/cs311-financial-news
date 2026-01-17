@@ -4,34 +4,39 @@ const HeroSection = () => {
   const numbers = [
     {
       value: "300+",
-      label: "Resources available",
+      label: "Tài nguyên sẵn có",
     },
-    { value: "12k+", label: "Total Downloads" },
-    { value: "10k+", label: "Active Users" },
+    { value: "2000+", label: "Lượt đọc" },
+    { value: "50+", label: "Người dùng hoạt động" },
   ];
 
   return (
-    <section className="grid grid-cols-[4fr_3fr] items-center justify-between border-b border-b-neutral-700">
-      <div className="flex h-full flex-col justify-center">
-        <div className="p-18">
+    <section className="flex flex-col items-center justify-between border-b border-b-neutral-700 lg:flex-row">
+      <div className="flex h-full w-full flex-col justify-center">
+        <div className="p-6 sm:p-12 md:p-18">
           <p className="mb-3 text-lg tracking-widest text-neutral-400">
-            Your Journey to Tomorrow Begins Here
+            Cập nhật tin tức tài chính nhanh chóng và chính xác
           </p>
-          <h1 className="mb-2 text-5xl leading-tight font-medium">
-            Explore the Frontiers of{" "}
-            <span className="text-yellow-400">Artificial Intelligence</span>
+          <h1 className="mb-5 text-3xl leading-tight font-medium sm:text-5xl">
+            Nắm bắt{" "}
+            <span className="text-yellow-400">thị trường tài chính</span> mỗi
+            ngày.
           </h1>
           <p className="text-sm text-neutral-400">
-            Welcome to the epicenter of AI innovation. FutureTech AI News is
-            your passport to a world where machines think, learn, and reshape
-            the future. Join us on this visionary expedition into the heart of
-            AI.
+            Chào mừng bạn đến với nguồn tin tức tài chính hàng đầu. Tại đây, bạn
+            sẽ được cập nhật những biến động mới nhất về thị trường, xu hướng
+            đầu tư, và các phân tích chuyên sâu giúp bạn đưa ra quyết định sáng
+            suốt. Hãy cùng chúng tôi theo dõi nhịp đập của nền kinh tế và tận
+            dụng cơ hội phát triển tài chính cá nhân.
           </p>
         </div>
 
-        <div className="grid grid-cols-3 divide-x divide-neutral-700 border-t border-t-neutral-700 pl-6">
+        <div className="grid grid-cols-1 divide-y divide-neutral-700 border-t border-t-neutral-700 pl-0 sm:grid-cols-3 sm:divide-x sm:divide-y-0 sm:pl-6">
           {numbers.map((item, i) => (
-            <div key={i} className="py-10 pl-12">
+            <div
+              key={i}
+              className="py-6 pl-0 text-center sm:py-10 sm:pl-12 sm:text-left"
+            >
               <p className="mb-2 text-3xl font-bold text-yellow-400">
                 {item.value}
               </p>
@@ -39,14 +44,6 @@ const HeroSection = () => {
             </div>
           ))}
         </div>
-      </div>
-
-      <div className="relative h-[500px] w-full border-l border-l-neutral-700">
-        <img
-          src="src/assets/images/dog.jpg"
-          alt="AI illustration"
-          className="inset-0 h-full w-full object-cover"
-        />
       </div>
     </section>
   );
