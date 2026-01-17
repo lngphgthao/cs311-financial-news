@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { BsArrowUpRight } from "react-icons/bs";
 
 const BlogCard = ({ post }) => {
@@ -28,13 +29,13 @@ const BlogCard = ({ post }) => {
         </div>
 
         {/* View Blog Button */}
-        <button
+        <Link
+          to={`/news/${encodeURIComponent(post.url)}`}
           className="cursor-pointer rounded-lg border border-neutral-600/60 px-4 py-3 text-neutral-400 hover:bg-neutral-700 hover:text-white"
-          href="/news"
         >
           Đọc thêm
           <BsArrowUpRight className="ml-2 inline text-lg text-amber-300" />
-        </button>
+        </Link>
       </div>
     </div>
   );

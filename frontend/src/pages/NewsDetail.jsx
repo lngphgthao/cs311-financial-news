@@ -8,13 +8,15 @@ const NewsDetail = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     fetch("/vnexpress_kinhdoanh.json")
       .then((res) => {
         if (!res.ok) throw new Error("Network response was not ok");
         return res.json();
       })
       .then((data) => {
-        const item = data[parseInt(id, 10)];
+        const decodedUrl = decodeURIComponent(id);
+        const item = data.find((n) => n.url === decodedUrl);
         setNews(item);
         setLoading(false);
       })
@@ -46,7 +48,7 @@ const NewsDetail = () => {
         </article>
         {/* Sidebar with info */}
         <aside className="flex h-fit flex-col justify-between space-y-6 rounded-xl bg-[#141414] p-6">
-          <div className="space-y-2 text-sm">
+          <div className="text-md space-y-2">
             <p>
               <span className="text-gray-400">Quay lại </span>
               <Link to="/news" className="text-yellow-400 hover:underline">
@@ -73,8 +75,8 @@ const NewsDetail = () => {
                     rel="noopener noreferrer"
                     className="truncate text-blue-400 underline"
                   >
-                    {news.url.slice(0, 45)}
-                    {news.url.length > 25 ? "..." : ""}
+                    {news.url.slice(0, 40)}
+                    {news.url.length > 40 ? "..." : ""}
                   </a>
                 ) : (
                   <span className="font-medium">VNExpress Kinh Doanh</span>

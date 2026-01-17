@@ -34,9 +34,12 @@ const Content = () => {
           )}
           {!loading &&
             !error &&
-            news.map((item, idx) => (
-              <div key={idx} className="mb-8 rounded bg-[#181818] p-4">
-                <Link to={`/news/${idx}`} className="block hover:underline">
+            news.map((item) => (
+              <div key={item.url} className="mb-8 rounded bg-[#181818] p-4">
+                <Link
+                  to={`/news/${encodeURIComponent(item.url)}`}
+                  className="block hover:underline"
+                >
                   <h2 className="mb-2 text-xl font-semibold text-white">
                     {item.title}
                   </h2>
@@ -57,7 +60,7 @@ const Content = () => {
                 )}
                 <div className="mt-2">
                   <Link
-                    to={`/news/${idx}`}
+                    to={`/news/${encodeURIComponent(item.url)}`}
                     className="text-green-400 underline"
                   >
                     Xem chi tiết

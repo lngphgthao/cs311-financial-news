@@ -8,7 +8,11 @@ const RatingCard = ({ rating }) => {
     <div className="flex flex-col items-center border-b border-neutral-600 p-6 sm:p-10">
       {/* User Info */}
       <div className="flex gap-3 p-4 pb-8 sm:p-8 sm:pb-12">
-        <img className="size-12 rounded-full" src={rating.user.image} alt="" />
+        <img
+          className="size-12 rounded-full object-cover"
+          src={rating.user.image}
+          alt={rating.user.name}
+        />
         <div className="flex flex-col justify-center">
           <h3>{rating.user.name}</h3>
           <h4 className="text-sm text-neutral-500">{rating.user.location}</h4>

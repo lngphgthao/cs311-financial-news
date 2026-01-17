@@ -14,7 +14,7 @@ const RecommendationSection = ({ news }) => {
       <div className="flex flex-row items-center gap-12 border-b border-neutral-700 px-18 py-12">
         <img
           className="aspect-3/2 h-84 rounded-md object-cover"
-          src="src/assets/images/dog.jpg"
+          src="src/assets/images/image-1.jpg"
           alt="Recommendation Banner"
         />
 
@@ -41,17 +41,17 @@ const RecommendationSection = ({ news }) => {
 
       {/* Grid of 3 */}
       <div className="grid grid-cols-1 gap-10 px-4 py-8 sm:grid-cols-2 sm:px-10 sm:py-12 md:grid-cols-3 md:px-18">
-        {additional.map((item, idx) =>
-          item ? (
+        {additional.map((item) =>
+          item && item.url ? (
             <Link
-              to={`/news/${item.id ?? idx}`}
-              key={item.id ?? idx}
+              to={`/news/${encodeURIComponent(item.url)}`}
+              key={item.url}
               className="flex flex-col justify-between"
             >
               <div className="flex flex-col gap-2">
                 <img
                   className="aspect-auto h-72 rounded-md object-cover"
-                  src="src/assets/images/dog.jpg"
+                  src={`src/assets/images/image-${additional.indexOf(item) + 2}.jpg`}
                   alt="Additional Recommendation"
                 />
                 <h4 className="mt-1 text-lg font-semibold">

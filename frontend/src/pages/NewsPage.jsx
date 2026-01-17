@@ -31,12 +31,15 @@ const NewsPage = () => {
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {!loading &&
           !error &&
-          news.map((item, idx) => (
+          news.map((item) => (
             <div
-              key={idx}
+              key={item.url}
               className="flex flex-col justify-between rounded bg-[#181818] p-4 shadow transition-shadow hover:shadow-lg"
             >
-              <Link to={`/news/${idx}`} className="block hover:underline">
+              <Link
+                to={`/news/${encodeURIComponent(item.url)}`}
+                className="block hover:underline"
+              >
                 <h2 className="mb-2 text-xl font-semibold text-white">
                   {item.title}
                 </h2>
@@ -49,7 +52,7 @@ const NewsPage = () => {
                 {item.author && <span>✍️ {item.author}</span>}
               </div>
               <Link
-                to={`/news/${idx}`}
+                to={`/news/${encodeURIComponent(item.url)}`}
                 className="mt-3 self-start text-green-400 underline"
               >
                 Xem chi tiết
